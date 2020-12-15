@@ -22,9 +22,18 @@ tableData.forEach(function(aliens){
 var form = d3.select("form");
 form.on("submit",runEnter);
 
+// Function that will keep the form value saved.
 function runEnter() {
     // d3.event.preventDefault();
+    
     var inputdate = d3.select("#datetime");
     var inputData = inputdate.property("value");
+    
+    // Check to see if the value is correct.
     console.log(inputData);
+
+    // Filter for the data
+    var filteredData = tableData.filter(alien => alien.datetime === inputData);
+    console.log(filteredData)
 };
+
