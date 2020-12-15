@@ -21,11 +21,12 @@ tableData.forEach(function(aliens){
 // Creating a filter for the search form.
 var form = d3.select("form");
 form.on("submit",runEnter);
-
+// Filter for the data
 // Function that will keep the form value saved.
 function runEnter() {
-    // d3.event.preventDefault();
-    
+    d3.event.preventDefault();
+
+    // Takes the input of the form.
     var inputdate = d3.select("#datetime");
     var inputData = inputdate.property("value");
     
@@ -34,6 +35,22 @@ function runEnter() {
 
     // Filter for the data
     var filteredData = tableData.filter(alien => alien.datetime === inputData);
-    console.log(filteredData)
+    console.log(filteredData);
+    
+    // Removes the table rows in the graph.
+    d3.selectAll("tr").remove();
+
+    // Reads the filteredData array.
+    filteredData.forEach(function(aliens){
+        var row = tbody.append("tr");
+    
+        // Created cells for the table
+        Object.entries(aliens).forEach(function([key,value]){
+    
+            // Creating the cells and placing the values into the cell.
+            var cell = row.append("td");
+            cell.text(value);
+        });
+    });
 };
 
