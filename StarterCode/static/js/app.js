@@ -11,9 +11,6 @@ tableData.forEach(function(aliens){
 
     // Created cells for the table
     Object.entries(aliens).forEach(function([key,value]){
-    
-        // Print out the values of the datatable to check for the correct values
-        // console.log(key,value);
 
         // Creating the cells and placing the values into the cell.
         var cell = row.append("td");
@@ -26,7 +23,7 @@ var form = d3.select("form");
 form.on("submit",runEnter);
 
 function runEnter() {
-    d3.event.preventDefault();
+    // d3.event.preventDefault();
     var inputdate = d3.select("#datetime");
     var inputData = inputdate.property("value");
     console.log(inputData);
