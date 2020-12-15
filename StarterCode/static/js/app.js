@@ -13,10 +13,21 @@ tableData.forEach(function(aliens){
     Object.entries(aliens).forEach(function([key,value]){
     
         // Print out the values of the datatable to check for the correct values
-        console.log(key,value);
+        // console.log(key,value);
 
         // Creating the cells and placing the values into the cell.
         var cell = row.append("td");
         cell.text(value);
     });
 });
+
+// Creating a filter for the search form.
+var form = d3.select("form");
+form.on("submit",runEnter);
+
+function runEnter() {
+    d3.event.preventDefault();
+    var inputdate = d3.select("#datetime");
+    var inputData = inputdate.property("value");
+    console.log(inputData);
+};
