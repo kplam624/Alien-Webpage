@@ -6,19 +6,17 @@ console.log(tableData.length)
 var tbody = d3.select("tbody");
 
 // Create a loop to append a row to the table. (<tr>)
-for(var i = 0; i < 10; i++) {
-    var row = tbody.append("tr");
-    // Filled each cell with text.
-    for(var j = 0; j < 7; j++){
-        var cell = row.append("td");
-        cell.text("Filled");
-    };
-};
-
 tableData.forEach(function(aliens){
     var row = tbody.append("tr");
 
+    // Created cells for the table
     Object.entries(aliens).forEach(function([key,value]){
-        console.log(key,value)
-    })
-})
+    
+        // Print out the values of the datatable to check for the correct values
+        console.log(key,value);
+
+        // Creating the cells and placing the values into the cell.
+        var cell = row.append("td");
+        cell.text(value);
+    });
+});
