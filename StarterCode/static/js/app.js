@@ -24,6 +24,7 @@ var button = d3.select("#filter-btn");
 var reset = d3.select("#reset-btn")
 var filteredData = []
 
+// When the user presses enter on the form
 form.on("submit",runEnter);
 // Filter for the data
 // Function that will keep the form value saved.
@@ -42,6 +43,26 @@ function runEnter() {
     console.log(filteredData);
 };
 
+// When the user inputs and selects outside the form.
+form.on("change",runChange);
+// Filter for the data
+// Function that will keep the form value saved.
+function runChange() {
+    d3.event.preventDefault();
+
+    // Takes the input of the form.
+    var inputdate = d3.select("#datetime");
+    var inputData = inputdate.property("value");
+    
+    // Check to see if the value is correct.
+    console.log(inputData);
+
+    // Filter for the data
+    filteredData = tableData.filter(alien => alien.datetime === inputData);
+    console.log(filteredData);
+};
+
+// Button when clicked will show the filtered data.
 button.on("click",runEntered);
 function runEntered() {
 
@@ -78,7 +99,7 @@ reset.on("click",runReset);
 // function to run
 function runReset() {
     // remove the table
-    d3.selectAll("tr").remove();
+    tbody.selectAll("tr").remove();
 
     // Adds the table to the page.
     tableData.forEach(function(aliens){
