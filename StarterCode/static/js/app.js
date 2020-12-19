@@ -21,8 +21,8 @@ tableData.forEach(function(aliens){
 // Creating a filter for the search form.
 var form = d3.select("form");
 var button = d3.select("#filter-btn");
+var reset = d3.select("#reset-btn")
 var filteredData = []
-var inputData = ""
 
 form.on("submit",runEnter);
 // Filter for the data
@@ -42,7 +42,7 @@ function runEnter() {
     console.log(filteredData);
 };
 
-button.on("click",runEntered)
+button.on("click",runEntered);
 function runEntered() {
     console.log(inputData)
     // Create a conditional to show data if it exists otherwise will not do anything.
@@ -68,19 +68,27 @@ function runEntered() {
     else{
         // This will be presented in the console.
         console.log("Invalid Query.");
-
-        // The table will show the original data
-        tableData.forEach(function(aliens){
-            var row = tbody.append("tr");
-        
-            // Created cells for the table
-            Object.entries(aliens).forEach(function([key,value]){
-        
-                // Creating the cells and placing the values into the cell.
-                var cell = row.append("td");
-                cell.text(value);
-            });
-        });
     };
 };
 
+// For a table reset
+reset.on("click",runReset);
+
+// function to run
+function runReset() {
+    // remove the table
+    d3.selectAll("tr").remove();
+
+    // Adds the table to the page.
+    tableData.forEach(function(aliens){
+        var row = tbody.append("tr");
+    
+        // Created cells for the table
+        Object.entries(aliens).forEach(function([key,value]){
+    
+            // Creating the cells and placing the values into the cell.
+            var cell = row.append("td");
+            cell.text(value);
+        });
+    });
+}
