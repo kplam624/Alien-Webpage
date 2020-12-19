@@ -26,8 +26,10 @@ var filteredData = [];
 
 // When the user presses enter on the form
 form.on("submit",runEnter);
+
 // Filter for the data
 // Function that will keep the form value saved.
+// This is incase the user presses enter on the form. The webpage will not refresh.
 function runEnter() {
     d3.event.preventDefault();
 
@@ -35,15 +37,19 @@ function runEnter() {
     var inputdate = d3.select("#datetime");
     var inputDate = inputdate.property("value");
 
+    // The city
     var inputcity = d3.select("#city");
     var inputCity = inputcity.property("value").toLowerCase();
 
+    // The state
     var inputstate = d3.select("#state");
     var inputState = inputstate.property("value").toLowerCase();
 
+    // The country
     var inputcountry = d3.select("#country");
     var inputCountry = inputcountry.property("value").toLowerCase();
 
+    // The shape
     var inputshape = d3.select("#shape");
     var inputShape = inputshape.property("value").toLowerCase();
     
@@ -55,7 +61,45 @@ function runEnter() {
     console.log(inputShape);
 
     // Filter for the data
-    filteredData = tableData.filter(alien => alien.datetime === inputDate && alien.city === inputCity);
+    // The filter will go through each form
+    // If the form is null, it will skip that filter.
+    if(!inputDate){
+        var filteredDate = tableData;
+    }
+    else{
+        var filteredDate = tableData.filter(alien => alien.datetime === inputDate);
+    }
+    
+    if (!inputCity){
+        var filteredCity = filteredDate;
+    }
+    else{
+        var filteredCity = filteredDate.filter(alien => alien.city === inputCity);
+    }
+
+    if (!inputState){
+        var filteredState = filteredCity;
+    }
+    else{
+        var filteredState = filteredCity.filter(alien => alien.state === inputState);
+    }
+
+    if (!inputCountry){
+        var filteredCountry = filteredState;
+    }
+    else{
+        var filteredCountry = filteredState.filter(alien => alien.country === inputCountry);
+    }
+
+    if (!inputShape){
+        var filteredShape = filteredCountry;
+    }
+    else{
+        var filteredShape = filteredCountry.filter(alien => alien.shape === inputShape);
+    }
+
+    // Once the filter is done, it is ready to be shown.
+    filteredData = filteredShape;
     console.log(filteredData);
 };
 
@@ -63,8 +107,8 @@ function runEnter() {
 form.on("change",runChange);
 
 // Function that will keep the form value saved.
+// The code in this block is the same as above.
 function runChange() {
-    d3.event.preventDefault();
 
     // Takes the input of the form.
     var inputdate = d3.select("#datetime");
@@ -90,7 +134,42 @@ function runChange() {
     console.log(inputShape);
 
     // Filter for the data
-    filteredData = tableData.filter(alien => alien.datetime === inputDate && alien.city === inputCity);
+    if(!inputDate){
+        var filteredDate = tableData;
+    }
+    else{
+        var filteredDate = tableData.filter(alien => alien.datetime === inputDate);
+    }
+    
+    if (!inputCity){
+        var filteredCity = filteredDate;
+    }
+    else{
+        var filteredCity = filteredDate.filter(alien => alien.city === inputCity);
+    }
+
+    if (!inputState){
+        var filteredState = filteredCity;
+    }
+    else{
+        var filteredState = filteredCity.filter(alien => alien.state === inputState);
+    }
+
+    if (!inputCountry){
+        var filteredCountry = filteredState;
+    }
+    else{
+        var filteredCountry = filteredState.filter(alien => alien.country === inputCountry);
+    }
+
+    if (!inputShape){
+        var filteredShape = filteredCountry;
+    }
+    else{
+        var filteredShape = filteredCountry.filter(alien => alien.shape === inputShape);
+    }
+
+    filteredData = filteredShape;
     console.log(filteredData);
 };
 
