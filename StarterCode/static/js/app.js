@@ -44,12 +44,12 @@ function runEnter() {
 
 button.on("click",runEntered);
 function runEntered() {
-    console.log(inputData)
+
     // Create a conditional to show data if it exists otherwise will not do anything.
     if(filteredData.length > 0){
-
+        
         // Removes the table rows in the graph.
-        d3.selectAll("tr").remove();
+        tbody.selectAll("tr").remove();
 
         // Reads the filteredData array.
         filteredData.forEach(function(aliens){
@@ -66,6 +66,7 @@ function runEntered() {
     }
     // If the table length is 0 or less than zero. The error message appears.
     else{
+        tbody.selectAll("tr").remove();
         // This will be presented in the console.
         console.log("Invalid Query.");
     };
