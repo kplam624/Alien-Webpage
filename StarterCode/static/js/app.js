@@ -22,6 +22,8 @@ tableData.forEach(function(aliens){
 var form = d3.select("form");
 var button = d3.select("#filter-btn");
 var filteredData = []
+var inputData = ""
+
 form.on("submit",runEnter);
 // Filter for the data
 // Function that will keep the form value saved.
@@ -42,6 +44,7 @@ function runEnter() {
 
 button.on("click",runEntered)
 function runEntered() {
+    console.log(inputData)
     // Create a conditional to show data if it exists otherwise will not do anything.
     if(filteredData.length > 0){
 
@@ -61,8 +64,12 @@ function runEntered() {
             });
         });
     }
+    // If the table length is 0 or less than zero. The error message appears.
     else{
+        // This will be presented in the console.
         console.log("Invalid Query.");
+
+        // The table will show the original data
         tableData.forEach(function(aliens){
             var row = tbody.append("tr");
         
@@ -74,7 +81,6 @@ function runEntered() {
                 cell.text(value);
             });
         });
-
     };
 };
 
