@@ -20,6 +20,8 @@ tableData.forEach(function(aliens){
 
 // Creating a filter for the search form.
 var form = d3.select("form");
+var button = d3.select("#filter-btn");
+var filteredData = []
 form.on("submit",runEnter);
 // Filter for the data
 // Function that will keep the form value saved.
@@ -34,23 +36,33 @@ function runEnter() {
     console.log(inputData);
 
     // Filter for the data
-    var filteredData = tableData.filter(alien => alien.datetime === inputData);
+    filteredData = tableData.filter(alien => alien.datetime === inputData);
     console.log(filteredData);
-    
-    // Removes the table rows in the graph.
-    d3.selectAll("tr").remove();
+};
 
-    // Reads the filteredData array.
-    filteredData.forEach(function(aliens){
-        var row = tbody.append("tr");
-    
-        // Created cells for the table
-        Object.entries(aliens).forEach(function([key,value]){
-    
-            // Creating the cells and placing the values into the cell.
-            var cell = row.append("td");
-            cell.text(value);
+button.on("click",runEntered)
+function runEntered() {
+    // Create a conditional to show data if it exists otherwise will not do anything.
+    if(filteredData.length > 0){
+
+        // Removes the table rows in the graph.
+        d3.selectAll("tr").remove();
+
+        // Reads the filteredData array.
+        filteredData.forEach(function(aliens){
+            var row = tbody.append("tr");
+        
+            // Created cells for the table
+            Object.entries(aliens).forEach(function([key,value]){
+        
+                // Creating the cells and placing the values into the cell.
+                var cell = row.append("td");
+                cell.text(value);
+            });
         });
-    });
+    }
+    else{
+        console.log("Invalid Query.");
+    };
 };
 
