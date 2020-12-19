@@ -63,6 +63,18 @@ function runEntered() {
     }
     else{
         console.log("Invalid Query.");
+        tableData.forEach(function(aliens){
+            var row = tbody.append("tr");
+        
+            // Created cells for the table
+            Object.entries(aliens).forEach(function([key,value]){
+        
+                // Creating the cells and placing the values into the cell.
+                var cell = row.append("td");
+                cell.text(value);
+            });
+        });
+
     };
 };
 
