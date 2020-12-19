@@ -26,8 +26,10 @@ var filteredData = [];
 
 // When the user presses enter on the form
 form.on("submit",runEnter);
+
 // Filter for the data
 // Function that will keep the form value saved.
+// This is in case the user presses enter on the form. This prevents a webpage refresh.
 function runEnter() {
     d3.event.preventDefault();
 
