@@ -33,13 +33,29 @@ function runEnter() {
 
     // Takes the input of the form.
     var inputdate = d3.select("#datetime");
-    var inputData = inputdate.property("value");
+    var inputDate = inputdate.property("value");
+
+    var inputcity = d3.select("#city");
+    var inputCity = inputcity.property("value").toLowerCase();
+
+    var inputstate = d3.select("#state");
+    var inputState = inputstate.property("value").toLowerCase();
+
+    var inputcountry = d3.select("#country");
+    var inputCountry = inputcountry.property("value").toLowerCase();
+
+    var inputshape = d3.select("#shape");
+    var inputShape = inputshape.property("value").toLowerCase();
     
     // Check to see if the value is correct.
-    console.log(inputData);
+    console.log(inputDate);
+    console.log(inputCity);
+    console.log(inputState);
+    console.log(inputCountry);
+    console.log(inputShape);
 
     // Filter for the data
-    filteredData = tableData.filter(alien => alien.datetime === inputData);
+    filteredData = tableData.filter(alien => alien.datetime === inputDate && alien.city === inputCity);
     console.log(filteredData);
 };
 
@@ -52,13 +68,29 @@ function runChange() {
 
     // Takes the input of the form.
     var inputdate = d3.select("#datetime");
-    var inputData = inputdate.property("value");
+    var inputDate = inputdate.property("value");
+
+    var inputcity = d3.select("#city");
+    var inputCity = inputcity.property("value").toLowerCase();
+
+    var inputstate = d3.select("#state");
+    var inputState = inputstate.property("value").toLowerCase();
+
+    var inputcountry = d3.select("#country");
+    var inputCountry = inputcountry.property("value").toLowerCase();
+
+    var inputshape = d3.select("#shape");
+    var inputShape = inputshape.property("value").toLowerCase();
     
     // Check to see if the value is correct.
-    console.log(inputData);
+    console.log(inputDate);
+    console.log(inputCity);
+    console.log(inputState);
+    console.log(inputCountry);
+    console.log(inputShape);
 
     // Filter for the data
-    filteredData = tableData.filter(alien => alien.datetime === inputData);
+    filteredData = tableData.filter(alien => alien.datetime === inputDate && alien.city === inputCity);
     console.log(filteredData);
 };
 
