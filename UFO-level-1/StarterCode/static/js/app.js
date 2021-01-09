@@ -1,6 +1,5 @@
 // from data.js
 var tableData = data;
-console.log(tableData.length);
 
 // First connect the app to the html file.
 var tbody = d3.select("tbody");
